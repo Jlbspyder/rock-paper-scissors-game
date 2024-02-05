@@ -37,33 +37,39 @@ let point = 0
   const setGamePlay = (userPick, cpuPick) => {
       if (userPick === "paper" && cpuPick === "scissors") {
         setWinner("YOU LOSE!")
+        setScore((point) => (point - 3))
       }
       if (userPick === "paper" && cpuPick === "rock") {
         setWinner("YOU WIN!")
-        setPoints(point + 10)
+        setPoints(point + 3)
       }
       if (userPick == "paper" && cpuPick == "paper") {
         setWinner("IT'S A TIE!");
+        setScore((point)  => (point + 1))
       }
       if (userPick == "rock" && cpuPick == "scissors") {
         setWinner("YOU WIN!");
-        setPoints(point + 10);
+        setPoints(point + 3);
       }
       if (userPick == "rock" && cpuPick == "paper") {
         setWinner("YOU LOSE!");
+        setScore((point) => (point - 3))
       }
       if (userPick == "rock" && cpuPick == "rock") {
         setWinner("IT'S A TIE!");
+        setScore((point)  => (point + 1))
       }
       if (userPick == "scissors" && cpuPick == "scissors") {
         setWinner("IT'S A TIE!");
+        setScore((point)  => (point + 1))
       }
       if (userPick == "scissors" && cpuPick == "rock") {
         setWinner("YOU LOSE!");
+        setScore((point) => (point - 3))
       }
       if (userPick == "scissors" && cpuPick == "paper") {
         setWinner("YOU WIN!");
-        setPoints(point + 10);
+        setPoints(point + 3);
       }
   }  
 
@@ -77,8 +83,7 @@ let point = 0
 
   const setPoints = (newPoint) => {
     point = newPoint
-    setScore((point => (point + 10)))
-    console.log(point)
+    setScore((point => (point + 3)))
   }
 
   return (
@@ -145,7 +150,7 @@ let point = 0
       </div>}
       {showGameBoard && <div className="mobile-summary">
         <h1>{result}</h1>
-        <div className="play">PLAY AGAIN</div>
+        <div className="play" onClick={restart} >PLAY AGAIN</div>
       </div>}
       {!showRules && <div className="footer">
         <div className="rules" onClick={() => setShowRules(true)} >RULES</div>
