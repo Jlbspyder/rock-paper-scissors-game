@@ -257,7 +257,7 @@ body {
     right: 10px;
   }
   .rules-bg {
-    position: absolute;
+    position: fixed;
     inset: 0 0 0 0;
     background: rgba(0, 0, 0, 0.5);
     transition: opacity 0.4s ease, visibility 0.4s ease,
@@ -276,8 +276,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    position: fixed;
-    inset: 130px 450px 10px 450px;
+    position: static;
+    width: 40%;
+    height: 70%;
+    margin: 140px auto;
     transition: opacity 0.4s ease, visibility 0.4s ease,
       transform 0.5s ease-in-out;
     visibility: hidden;
@@ -323,11 +325,12 @@ body {
     bottom: 50px;
   }
   .guideline {
-    inset: 150px 160px 430px 160px;
+    margin: 200px auto;
+    width: 50%;
+    height: 40%;
   }
-  .guideline img {
-    width: 300px;
-    height: 300px;
+  .guideline-flex {
+    width: 70%;
   }
   .symbols {
     margin-top: 50px;
@@ -349,12 +352,26 @@ body {
     margin: 0 ;
   }
 }
+@media (min-width: 719px) and (max-width: 780px) {
+  .guideline {
+    margin: 70px auto;
+    width: 50%;
+    height: 250px;
+  }
+  .beats {
+    width: 200px;
+  }
+}
 @media (min-width: 840px) and (max-width: 900px) {
   .guideline {
-    inset: 0 0 0 0;
+    margin: 70px auto;
+    width: 30%;
   }
   .guideline-flex {
-    width: 50%;
+    width: 90%;
+  }
+  .beats {
+    width: 200px;
   }
   .summary h1 {
     font-size: 2rem;
@@ -386,15 +403,16 @@ body {
     font-size: 3rem;
   }
   .guideline {
-    inset: 0 0 0 0;
+    margin: 80px auto;
+    width: 35%;
+    height: 300px;
   }
   .guideline-flex {
-    width: 60%;
-    height: 200px;
+    width: 80%;
   }
   .beats {
-    width: 400px;
-    height: 95%;
+    width: 200px;
+    margin-bottom: 20px;
   }
   .game-board {
     margin-top: 200px;
@@ -457,19 +475,8 @@ body {
   .footer {
     bottom: 10px;
   }
-  .guideline {
-    inset: 24% 30% 10% 30%;
-    justify-content: space-around;
-  }
   .guideline-flex {
     width: 80%;
     margin: 10px;
-  }
-  .guideline-img {
-    width: 400px;
-  }
-  .beats {
-    width: 90%;
-    margin-left: 20px;
   }
 }
