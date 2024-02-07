@@ -277,9 +277,11 @@ body {
     align-items: center;
     justify-content: space-around;
     position: static;
-    width: 40%;
-    height: 70%;
-    margin: 140px auto;
+    position: absolute;
+    inset: 150px 150px 150px 150px;
+    width: 50%;
+    height: 50%;
+    margin: auto;
     transition: opacity 0.4s ease, visibility 0.4s ease,
       transform 0.5s ease-in-out;
     visibility: hidden;
@@ -312,8 +314,8 @@ body {
     margin-top: 150px;
   }
   .game-board img {
-    width: 230px;
-    height: 230px;
+    width: 250px;
+    height: 250px;
   }
   .summary h1 {
     font-size: 2rem;
@@ -323,11 +325,6 @@ body {
   }
   .footer {
     bottom: 50px;
-  }
-  .guideline {
-    margin: 200px auto;
-    width: 50%;
-    height: 40%;
   }
   .guideline-flex {
     width: 70%;
@@ -352,20 +349,19 @@ body {
     margin: 0 ;
   }
 }
-@media (min-width: 719px) and (max-width: 780px) {
+@media (min-width: 719px) and (max-width: 750px) {
   .guideline {
-    margin: 70px auto;
-    width: 50%;
-    height: 250px;
+    height: 90%; 
   }
-  .beats {
-    width: 200px;
+  .game-board img {
+    width: 220px;
+    height: 220px;
   }
 }
 @media (min-width: 840px) and (max-width: 900px) {
   .guideline {
-    margin: 70px auto;
-    width: 30%;
+    height: 70%;
+    width: 40%;
   }
   .guideline-flex {
     width: 90%;
@@ -379,8 +375,42 @@ body {
   .play {
     padding: 1em 1.8em;
   }
+  .game-board img {
+    width: 280px;
+    height: 280px;
+  }
 }
-@media (min-width: 900px) and (max-width: 1200px) {
+@media (min-width: 900px) and (max-width: 915px) {
+  .header {
+    min-height: 150px;
+  }
+  .logo {
+    width: 200px;
+  }
+  .guideline {
+    height: 40%;
+  }
+  .result {
+    width: 18%;
+    height: 100px;
+  }
+  .result p {
+    font-size: 1.3rem;
+  }
+  .result h1 {
+    font-size: 3.2rem;
+  }
+  .summary h1 {
+    font-size: 2.5rem;
+  }
+  .game-board {
+    margin-top: 200px;
+  }
+  .play  {
+    padding: 1em 1.5em;
+  }
+}
+@media (min-width: 913px) and (max-width: 1200px) {
   .container {
     min-height: 1000px;
   }
@@ -403,16 +433,10 @@ body {
     font-size: 3rem;
   }
   .guideline {
-    margin: 80px auto;
-    width: 35%;
-    height: 300px;
+    height: 80%;
   }
   .guideline-flex {
     width: 80%;
-  }
-  .beats {
-    width: 200px;
-    margin-bottom: 20px;
   }
   .game-board {
     margin-top: 200px;
@@ -445,7 +469,12 @@ body {
     padding: 1em 1.8em ;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1023px) and (max-width: 1030px) {
+  .guideline {
+    height: 500px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1350px) {
   .container {
     min-height: 800px;
   }
@@ -476,7 +505,15 @@ body {
     bottom: 10px;
   }
   .guideline-flex {
-    width: 80%;
     margin: 10px;
+  }
+  .guideline {
+    width: 40%;
+    height: 70%;
+  }
+}
+@media (min-width: 1350px) {
+  .game-board {
+    margin-top: 150px;
   }
 }

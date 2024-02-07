@@ -12,7 +12,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH/hub](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH/hub)
 - Live Site URL: [https://jlb-rock-paper-scissors-game.netlify.app/](https://jlb-rock-paper-scissors-game.netlify.app/)
 
 ### Built with
