@@ -64,11 +64,11 @@ a {
 }
 .logo {
   width: 100px;
+  cursor: pointer;
 }
 .title {
   padding-top: 10px;
-  width: 90%;
-  height: 80%;
+  width: 100%;
 }
 .result {
   width: 30%;
@@ -108,7 +108,8 @@ a {
 .symbols .effect:hover {
   transform: translate3d(0px, -8px, 0px);
 }
-.symbols img, .mobile-board img {
+.symbols img,
+.mobile-board img {
   width: 150px;
   height: 150px;
 }
@@ -145,11 +146,12 @@ a {
 }
 .mobile-summary {
   margin-top: 50px;
-  margin-bottom: 150px;
+  margin-bottom: 50px;
   display: flex;
   color: #fff;
   flex-direction: column;
   align-items: center;
+  animation: zoom 3s ease-in-out;
 }
 .play {
   margin-top: 10px;
@@ -160,16 +162,14 @@ a {
   border-radius: 8px;
   cursor: pointer;
 }
-.play:hover {
-  color: hsl(349, 71%, 52%);
-}
 .mobile-summary h1 {
   font-size: 3rem;
 }
 .user {
   margin-left: 10px;
 }
-.user, .cpu {
+.user,
+.cpu {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,7 +178,33 @@ a {
   margin-top: 20px;
   font-size: 0.8rem;
 }
-.game-board, .rules-bg {
+.reset {
+  color: hsl(237, 49%, 15%);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  padding: 0.5em 1em;
+  letter-spacing: 1px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+.reset:hover,
+.end:hover,
+.play:hover {
+  color: hsl(349, 71%, 52%);
+}
+.end-game {
+  background: hsl(237, 49%, 15%);
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.end {
+  color: #fff;
+  font-size: 10px;
+  padding: 0.3em 1em;
+}
+.game-board,
+.rules-bg {
   display: none;
 }
 .mobile-guideline {
@@ -216,12 +242,23 @@ a {
   color: rgb(54, 52, 52);
 }
 
+@keyframes zoom {
+  0% {
+    transform: scale(0.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media screen and (min-width: 670px) {
   .container {
     max-width: 1000px;
     margin: auto;
   }
-  .mobile-board, .mobile-summary, .mobile-guideline {
+  .mobile-board,
+  .mobile-summary,
+  .mobile-guideline {
     display: none;
   }
   .header {
@@ -235,7 +272,7 @@ a {
     letter-spacing: 0.5px;
   }
   .board {
-    margin-top: 50px;
+    margin: 50px auto;
   }
   .symbols {
     width: 650px;
@@ -263,10 +300,14 @@ a {
     width: 300px;
     height: 300px;
   }
-  .user, .cpu {
+  .user,
+  .cpu {
     height: 100%;
     justify-content: center;
     margin-left: 0;
+  }
+  .summary {
+    animation: zoom 3s ease-in-out;
   }
   .summary h1 {
     font-size: 3rem;
@@ -282,7 +323,7 @@ a {
     inset: 0 0 0 0;
     background: rgba(0, 0, 0, 0.5);
     transition: opacity 0.4s ease, visibility 0.4s ease,
-    transform 0.5s ease-in-out;
+      transform 0.5s ease-in-out;
     visibility: visible;
     opacity: 1;
     display: block;
@@ -346,7 +387,7 @@ a {
     padding: 1em 2em;
   }
   .footer {
-    bottom: 50px;
+    bottom: 30px;
   }
   .guideline-flex {
     width: 70%;
@@ -364,16 +405,18 @@ a {
   .rock {
     margin-top: 50px;
   }
-  .paper, .rock, .scissors {
+  .paper,
+  .rock,
+  .scissors {
     width: 50%;
   }
   .scissors {
-    margin: 0 ;
+    margin: 0;
   }
 }
 @media (min-width: 719px) and (max-width: 750px) {
   .guideline {
-    height: 90%; 
+    height: 90%;
   }
   .game-board img {
     width: 220px;
@@ -428,7 +471,7 @@ a {
   .game-board {
     margin-top: 200px;
   }
-  .play  {
+  .play {
     padding: 1em 1.5em;
   }
 }
@@ -488,12 +531,21 @@ a {
     font-size: 2.5rem;
   }
   .play {
-    padding: 1em 1.8em ;
+    padding: 1em 1.8em;
   }
 }
 @media (min-width: 1023px) and (max-width: 1030px) {
   .guideline {
     height: 500px;
+  }
+  .board {
+    min-height: 750px;
+  }
+  .reset {
+    margin-bottom: 10px;
+  }
+  .footer {
+    bottom: 10px;
   }
 }
 @media (min-width: 1200px) and (max-width: 1350px) {
@@ -514,14 +566,22 @@ a {
     margin-top: 100px;
     margin-left: 150px;
   }
-  .paper, .rock, .scissors {
+  .paper,
+  .rock,
+  .scissors {
     width: 40%;
   }
   .paper {
     margin-left: 150px;
   }
   .scissors {
-    margin: 0 ;
+    margin: 0;
+  }
+  .reset {
+    margin-bottom: 10px;
+  }
+  .board {
+    min-height: 550px;
   }
   .footer {
     bottom: 10px;
@@ -539,4 +599,3 @@ a {
     margin-top: 150px;
   }
 }
-

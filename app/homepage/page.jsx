@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { MdOutlineClose } from "react-icons/md";
 
 const HomePage = () => {
@@ -16,6 +17,7 @@ const HomePage = () => {
     scissors: "/images/scissors.png",
   };
   const placeholderImg = "/images/placeholder-img.png";
+
   let point = 0;
 
   const makePick = (pick) => {
@@ -37,6 +39,10 @@ const HomePage = () => {
     }, 1000);
 
     return cpuOption;
+  };
+
+  const reset = () => {
+    setScore(0);
   };
 
   const setGamePlay = (userPick, cpuPick) => {
@@ -111,12 +117,17 @@ const HomePage = () => {
   return (
     <div className="container">
       <div className="header">
-        <div className="logo">
+        <div className="logo" onClick={() => setShowGameBoard(false)} >
           <img src="images/logo.svg" alt="logo" className="title" />
         </div>
         <div className="result">
           <p>SCORE</p>
           <h1>{score}</h1>
+          <div className="end-game">
+            <Link href="/">
+              <div className="end">END GAME</div>
+            </Link>
+          </div>
         </div>
       </div>
       {!showGameBoard && (
@@ -188,6 +199,9 @@ const HomePage = () => {
           )}
         </div>
       )}
+      <div className="reset" onClick={reset}>
+        RESET
+      </div>
       {!showRules && (
         <div className="footer">
           <div className="rules" onClick={() => setShowRules(true)}>
