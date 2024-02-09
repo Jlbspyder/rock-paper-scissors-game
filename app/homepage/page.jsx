@@ -33,7 +33,7 @@ const HomePage = () => {
 
   const cpuPick = () => {
     let optns = ["rock", "paper", "scissors", "spock", "lizard"];
-    let cpuOption = optns[Math.floor(Math.random() * 3)];
+    let cpuOption = optns[Math.floor(Math.random() * 5)];
     const cpuChoice = options[cpuOption];
     setCpuImages(placeholderImg);
     setTimeout(() => {
