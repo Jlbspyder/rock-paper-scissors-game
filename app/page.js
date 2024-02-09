@@ -8,7 +8,7 @@ const page = () => {
     <div className="login">
       <div className="log header">
         <div className="logo">
-          <img src="images/logo.svg" alt="logo" className="title" />
+          <img src="images/logo-bonus.svg" alt="logo" className="title" />
         </div>
         <div className="result">
           <TbTriangleInverted className="triangle" />
