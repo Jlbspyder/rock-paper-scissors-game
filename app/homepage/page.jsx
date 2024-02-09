@@ -15,6 +15,8 @@ const HomePage = () => {
     rock: "/images/rock.png",
     paper: "/images/paper.png",
     scissors: "/images/scissors.png",
+    spock: "/images/icon-spock.svg",
+    lizard: "/images/icon-lizard.svg"
   };
   const placeholderImg = "/images/placeholder-img.png";
 
@@ -30,7 +32,7 @@ const HomePage = () => {
   };
 
   const cpuPick = () => {
-    let optns = ["rock", "paper", "scissors"];
+    let optns = ["rock", "paper", "scissors", "spock", "lizard"];
     let cpuOption = optns[Math.floor(Math.random() * 3)];
     const cpuChoice = options[cpuOption];
     setCpuImages(placeholderImg);
@@ -62,6 +64,16 @@ const HomePage = () => {
         setScore((point) => point + 1);
       }, 2000);
     }
+    if (userPick === "paper" && cpuPick === "spock") {
+      setWinner("YOU WIN!");
+      setPoints(point + 3)
+    }
+    if (userPick === "paper" && cpuPick === "lizard") {
+      setWinner("YOU LOSE!");
+      setTimeout(() => {
+        (setScore((point) => (point - 3)))
+      }, 2000)
+    }
     if (userPick == "rock" && cpuPick == "scissors") {
       setWinner("YOU WIN!");
       setPoints(point + 3);
@@ -76,6 +88,16 @@ const HomePage = () => {
       setWinner("IT'S A TIE!");
       setTimeout(() => {
         setScore((point) => point + 1);
+      }, 2000);
+    }
+    if (userPick == "rock" && cpuPick == "lizard") {
+      setWinner("YOU WIN!");
+      setPoints(point + 3)
+    }
+    if (userPick == "rock" && cpuPick == "spock") {
+      setWinner("YOU LOSE!");
+      setTimeout(() => {
+        setScore((point) => point - 1);
       }, 2000);
     }
     if (userPick == "scissors" && cpuPick == "scissors") {
@@ -94,7 +116,69 @@ const HomePage = () => {
       setWinner("YOU WIN!");
       setPoints(point + 3);
     }
+    if (userPick == "scissors" && cpuPick == "lizard") {
+      setWinner("YOU WIN!");
+      setPoints(point + 3);
+    }
+    if (userPick == "scissors" && cpuPick == "spock") {
+      setWinner("YOU LOSE!");
+      setTimeout(() => {
+        setScore((point) => point - 3);
+      }, 2000);
+    }
+    if (userPick == "spock" && cpuPick == "lizard") {
+      setWinner("YOU LOSE!");
+      setTimeout(() => {
+        setScore((point) => point - 3);
+      }, 2000);
+    }
+    if (userPick == "spock" && cpuPick == "spock") {
+      setWinner("IT'S A TIE!");
+      setTimeout(() => {
+        setScore((point) => point + 1);
+      }, 2000);
+    }
+    if (userPick == "spock" && cpuPick == "scissors") {
+      setWinner("YOU WIN!");
+      setPoints(point + 3);
+    }
+    if (userPick == "spock" && cpuPick == "paper") {
+      setWinner("YOU LOSE!");
+      setTimeout(() => {
+        setScore((point) => point - 3);
+      }, 2000);
+    }
+    if (userPick == "spock" && cpuPick == "rock") {
+      setWinner("YOU WIN!");
+      setPoints(point + 3);
+    }
+    if (userPick == "lizard" && cpuPick == "rock") {
+      setWinner("YOU LOSE!");
+      setTimeout(() => {
+        setScore((point) => point - 3);
+      }, 2000);
+    }
+    if (userPick == "lizard" && cpuPick == "spock") {
+      setWinner("YOU WIN!");
+      setPoints(point + 3);
+    }
+    if (userPick == "lizard" && cpuPick == "lizard") {
+      setWinner("IT'S A TIE!");
+      setTimeout(() => {
+        setScore((point) => point + 1);
+      }, 2000);
+    }
+    if (userPick == "lizard" && cpuPick == "scissors") {
+      setWinner("YOU LOSE!");
+      setTimeout(() => {
+        setScore((point) => point - 3);
+      }, 2000);
+    }
+    if (userPick == "lizard" && cpuPick == "paper") {
+      setWinner("YOU WIN!");
+      setPoints(point + 3);
   };
+}
 
   const restart = () => {
     setShowGameBoard(false);
@@ -117,8 +201,8 @@ const HomePage = () => {
   return (
     <div className="container">
       <div className="header">
-        <div className="logo" onClick={() => setShowGameBoard(false)} >
-          <img src="images/logo.svg" alt="logo" className="title" />
+        <div className="logo" onClick={() => setShowGameBoard(false)}>
+          <img src="images/logo-bonus.svg" alt="logo" className="title" />
         </div>
         <div className="result">
           <p>SCORE</p>
@@ -133,6 +217,22 @@ const HomePage = () => {
       {!showGameBoard && (
         <div className="board">
           <div className="symbols">
+            <div className="effect scissors">
+              <img
+                src="/images/scissors.png"
+                alt="scissors"
+                onClick={() => makePick("scissors")}
+              />
+            </div>
+            <div className="effect spock-bg">
+              <div className="spock">
+                <img 
+                src="/images/icon-spock.svg" 
+                alt="spock" 
+                id="icon-spock"
+                onClick={() => makePick("spock")} />
+              </div>
+            </div>
             <div className="effect paper">
               <img
                 src="/images/paper.png"
@@ -140,12 +240,14 @@ const HomePage = () => {
                 onClick={() => makePick("paper")}
               />
             </div>
-            <div className="effect scissors">
-              <img
-                src="/images/scissors.png"
-                alt="scissors"
-                onClick={() => makePick("scissors")}
-              />
+            <div className="effect lizard-bg">
+              <div className="lizard">
+                <img 
+                src="/images/icon-lizard.svg" 
+                alt="lizard" 
+                id="icon-lizard"
+                onClick={() => makePick("lizard")} />
+              </div>
             </div>
             <div className="effect rock">
               <img

@@ -36,6 +36,9 @@ a {
   flex-direction: column;
   align-items: center;
 }
+.board {
+  width: 100%;
+}
 .login {
   height: 100vh;
   display: flex;
@@ -54,7 +57,7 @@ a {
 .header {
   width: 80%;
   min-height: 120px;
-  margin-top: 50px;
+  margin-top: 10px;
   padding: 10px;
   border: 5px solid var(--HeaderOutline);
   border-radius: 8px;
@@ -73,6 +76,7 @@ a {
 .result {
   width: 30%;
   height: 90%;
+  padding-bottom: 10px;
   background: #fff;
   border-radius: 5px;
   display: flex;
@@ -89,17 +93,70 @@ a {
   padding-bottom: 5px;
 }
 .board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 80px;
 }
+.spock-bg {
+  position: absolute;
+  width: 115px;
+  height: 115px;
+  top: 120px ;
+  left: -30px;
+  border-radius: 50%;
+  background: hsl(189, 58%, 57%);
+}
+.lizard-bg {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  bottom: 20px ;
+  left: 0;
+  border-radius: 50%;
+  background: hsl(261, 72%, 63%);
+}
+.spock, .lizard {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 12%;
+  left: 12%;
+  border-radius: 50%;
+  background: #fff;
+}
+.scissors {
+  position: absolute;
+  left: 100px;
+}
+.rock {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+}
+.paper {
+  position: absolute;
+  right: -30px;
+  top: 120px;
+}
+#icon-spock, #icon-lizard {
+  width: 45px;
+  height: 45px;
+  margin: 20px 0 0 28px;
+}
+#icon-lizard {
+  margin-left: 25px;
+}
 .symbols {
-  background-image: url(/images/bg-triangle.svg);
+  position: relative;
+  background-image: url(/images/bg-pentagon.svg);
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   height: 450px;
-  width: 400px;
+  width: 80%;
 }
 .symbols .effect {
   cursor: pointer;
@@ -110,15 +167,12 @@ a {
 }
 .symbols img,
 .mobile-board img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
 }
 .mobile-board img {
   width: 130px;
   height: 130px;
-}
-.scissors {
-  margin-left: 50px;
 }
 .footer {
   position: absolute;
@@ -251,10 +305,57 @@ a {
   }
 }
 
+@media (min-width: 539px) and (max-width: 670px) {
+  .board {
+    margin-top: 0;
+  }
+  .spock-bg {
+    width: 120px;
+    height: 120px;
+    top: 120px ;
+    left: 0;
+  }
+  .lizard-bg {
+    width: 120px;
+    height: 120px;
+    bottom: 8% ;
+    left: 10%;
+  }
+  .spock, .lizard {
+    width: 95px;
+    height: 95px;
+    top: 12%;
+    left: 10%;
+  }
+  .scissors {
+    top: 5%;
+    left: 35%;
+  }
+  .rock {
+    right: 10%;
+    bottom: 5%;
+  }
+  .paper {
+    right: -3%;
+    top: 25%;
+  }
+  #icon-spock, #icon-lizard {
+    width: 50px;
+    height: 50px;
+    margin: 25px 0 0 30px;
+  }
+  #icon-lizard {
+    margin-left: 30px;
+  }
+  .reset {
+    margin-top: 50px;
+  }
+}
 @media screen and (min-width: 670px) {
   .container {
     max-width: 1000px;
     margin: auto;
+    height: 300px;
   }
   .mobile-board,
   .mobile-summary,
@@ -276,12 +377,62 @@ a {
   }
   .symbols {
     width: 650px;
+    min-height: 650px;
   }
   .scissors {
     margin-left: 230px;
   }
   .rock {
     margin-top: 80px;
+  }
+  .spock-bg {
+    position: absolute;
+    width: 165px;
+    height: 165px;
+    top: 120px ;
+    left: 0;
+    border-radius: 50%;
+    background: hsl(189, 58%, 57%);
+  }
+  .lizard-bg {
+    position: absolute;
+    width: 165px;
+    height: 165px;
+    bottom: 20px ;
+    left: 0;
+    border-radius: 50%;
+    background: hsl(261, 72%, 63%);
+  }
+  .spock, .lizard {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    top: 12%;
+    left: 10%;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .scissors {
+    position: absolute;
+    left: 100px;
+  }
+  .rock {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+  }
+  .paper {
+    position: absolute;
+    right: -30px;
+    top: 120px;
+  }
+  #icon-spock, #icon-lizard {
+    width: 65px;
+    height: 65px;
+    margin: 30px 0 0 35px;
+  }
+  #icon-lizard {
+    margin-left: 30px;
   }
   .game-board {
     display: flex;
@@ -383,6 +534,19 @@ a {
   .summary h1 {
     font-size: 2rem;
   }
+  .header {
+    margin-top: 20px;
+    min-height: 140px;
+  }
+  .result {
+    min-height: 110px;
+  }
+  .result p {
+    font-size: 1.3rem;
+  }
+  .result h1 {
+    font-size: 2rem;
+  }
   .play {
     padding: 1em 2em;
   }
@@ -395,12 +559,12 @@ a {
   .symbols {
     margin-top: 50px;
     background-position: 50% 80px;
-    width: 750px;
-    padding-left: 150px;
+    width: 70%;
+    background-size: 400px;
   }
   .symbols img {
-    width: 180px;
-    height: 180px;
+    width: 165px;
+    height: 165px;
   }
   .rock {
     margin-top: 50px;
@@ -413,17 +577,65 @@ a {
   .scissors {
     margin: 0;
   }
+  .spock-bg {
+    width: 165px;
+    height: 165px;
+    top: 20% ;
+    left: 5%;
+  }
+  .lizard-bg {
+    width: 165px;
+    height: 165px;
+    bottom: 20% ;
+    left: 10%;
+  }
+  .spock, .lizard {
+    width: 128px;
+    height: 128px;
+    top: 12%;
+    left: 12%;
+  }
+  .scissors {
+    left: 37%;
+  }
+  .rock {
+    right: -10%;
+    bottom: 19%;
+  }
+  .paper {
+    left: 65%;
+    top: 22%;
+  }
+  .footer {
+    top: 117% ;
+  }
 }
 @media (min-width: 719px) and (max-width: 750px) {
   .guideline {
     height: 90%;
   }
+  .header {
+    width: 80%;
+    min-height: 130px;
+  }
+  .result {
+    min-height: 110px;
+  }
   .game-board img {
     width: 220px;
     height: 220px;
   }
+  .footer {
+    top: 114%;
+  }
 }
 @media (min-width: 840px) and (max-width: 900px) {
+  .container {
+    min-height: 500px;
+  }
+  .header {
+    min-height: 140px;
+  }
   .guideline {
     height: 70%;
     width: 40%;
@@ -433,6 +645,15 @@ a {
   }
   .beats {
     width: 200px;
+  }
+  .result {
+    min-height: 110px;
+  }
+  .result p {
+    font-size: 1.5rem;
+  }
+  .result h1 {
+    font-size: 2.3rem;
   }
   .summary h1 {
     font-size: 2rem;
@@ -444,10 +665,64 @@ a {
     width: 280px;
     height: 280px;
   }
+  .board {
+    margin-top: 0;
+    height: 500px;
+  }
+  .symbols {
+    background-size: 350px;
+    background-position: 50% 40px;
+  }
+  .symbols img {
+    width: 150px;
+    height: 150px;
+  }
+  .spock-bg {
+    width: 150px;
+    height: 150px;
+    top: 18% ;
+    left: 10%;
+  }
+  .lizard-bg {
+    width: 150px;
+    height: 150px;
+    bottom: 32% ;
+    left: 20%;
+  }
+  .spock, .lizard {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 10%;
+  }
+  .scissors {
+    left: 0 ;
+    top: 5%;
+  }
+  .rock {
+    right: 20%;
+    bottom: 32%;
+  }
+  .paper {
+    right: 15%;
+    top: 18% ;
+  }
+  #icon-spock, #icon-lizard {
+    width: 70px;
+    height: 70px;
+    margin: 25px 0 0 35px;
+  }
+  #icon-lizard {
+    margin-left: 30px;
+  }
+  .footer {
+    top: 140%;
+  }
 }
 @media (min-width: 900px) and (max-width: 915px) {
   .header {
-    min-height: 150px;
+    margin-top: 20px;
+    min-height: 220px;
   }
   .logo {
     width: 200px;
@@ -457,13 +732,13 @@ a {
   }
   .result {
     width: 18%;
-    height: 100px;
+    min-height: 100px;
   }
   .result p {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   }
   .result h1 {
-    font-size: 3.2rem;
+    font-size: 3.5rem;
   }
   .summary h1 {
     font-size: 2.5rem;
@@ -474,6 +749,59 @@ a {
   .play {
     padding: 1em 1.5em;
   }
+  .end {
+    padding: 1em 2em;
+  }
+  .symbols {
+    width: 800px;
+    min-height: 750px;
+    background-size: 500px;
+  }
+  .symbols img {
+    width: 200px;
+    height: 200px;
+  }
+  .spock-bg {
+    width: 200px;
+    height: 200px;
+    top: 25% ;
+    left: 10%;
+  }
+  .lizard-bg {
+    width: 200px;
+    height: 200px;
+    bottom: 10% ;
+    left: 15% ;
+  }
+  .spock, .lizard {
+    width: 150px;
+    height: 150px;
+    top: 12%;
+    left: 12%;
+  }
+  .scissors {
+    left: 10%;
+    top: 5%;
+  }
+  .rock {
+    right: 15% ;
+    bottom: 8%;
+  }
+  .paper {
+    right: 10%;
+    top: 25% ;
+  }
+  #icon-spock, #icon-lizard {
+    width: 75px;
+    height: 75px;
+    margin: 30px 0 0 45px;
+  }
+  #icon-lizard {
+    margin-left: 35px;
+  }
+  .footer {
+    top: 132%;
+  }
 }
 @media (min-width: 913px) and (max-width: 1200px) {
   .container {
@@ -481,21 +809,25 @@ a {
   }
   .header {
     width: 90%;
-    min-height: 150px;
+    min-height: 170px;
   }
   .logo {
     width: 150px;
   }
   .result {
+    padding-bottom: 10px;
     width: 15%;
-    height: 100px;
+    min-height: 140px;
     justify-content: center;
   }
   .result p {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   }
   .result h1 {
     font-size: 3rem;
+  }
+  .end {
+    padding: 0.8em 2em;
   }
   .guideline {
     height: 80%;
@@ -511,13 +843,60 @@ a {
   }
   .symbols {
     margin-top: 60px;
-    background-size: 500px;
+    background-size: 600px;
     background-position: 50% 80px;
     width: 100%;
+    min-height: 800px;
   }
   .symbols img {
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
+  }
+  .spock-bg {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 20% ;
+    left: 5%;
+    border-radius: 50%;
+    background: hsl(189, 58%, 57%);
+  }
+  .lizard-bg {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    bottom: 20px ;
+    left: 15%;
+    border-radius: 50%;
+    background: hsl(261, 72%, 63%);
+  }
+  .spock, .lizard {
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    top: 12%;
+    left: 12%;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .scissors {
+    position: absolute;
+    left: 15%;
+  }
+  .rock {
+    position: absolute;
+    right: 15% ;
+    bottom: 2% ;
+  }
+  .paper {
+    position: absolute;
+    right: 4% ;
+    top: 20% ;
+  }
+  #icon-spock, #icon-lizard {
+    width: 120px;
+    height: 120px;
+    margin: 40px 0 0 55px;
   }
   .footer {
     bottom: 0;
@@ -532,6 +911,12 @@ a {
   }
   .play {
     padding: 1em 1.8em;
+  }
+  .reset {
+    margin-top: 150px;
+  }
+  .footer {
+    top: 117%;
   }
 }
 @media (min-width: 1023px) and (max-width: 1030px) {
@@ -549,18 +934,27 @@ a {
   }
 }
 @media (min-width: 1200px) and (max-width: 1350px) {
-  .container {
-    min-height: 800px;
+  .result {
+    min-height: 100px;
+  }
+  .result p {
+    font-size: 1rem;
+  }
+  .result h1 {
+    font-size: 2rem;
+  }
+  .board {
+    margin-top: 20px;
   }
   .symbols {
-    margin-top: 0;
-    background-size: 400px;
-    background-position: 50% 80px;
-    width: 900px;
+    margin-top: 20px;
+    background-size: 350px;
+    background-position: 50% 20px;
+    width: 80%;
   }
   .symbols img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
   }
   .rock {
     margin-top: 100px;
@@ -577,14 +971,61 @@ a {
   .scissors {
     margin: 0;
   }
+  .spock-bg {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 10% ;
+    left: 17% ;
+    border-radius: 50%;
+    background: hsl(189, 58%, 57%);
+  }
+  .lizard-bg {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    bottom: 37%;
+    left: 27%;
+    border-radius: 50%;
+    background: hsl(261, 72%, 63%);
+  }
+  .spock, .lizard {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: 12%;
+    left: 13%;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .scissors {
+    position: absolute;
+    left: 40%;
+  }
+  .rock {
+    position: absolute;
+    right: 5%;
+    bottom: 37%;
+  }
+  .paper {
+    position: absolute;
+    right: -3%;
+    top: 10%;
+  }
+  #icon-spock, #icon-lizard {
+    width: 55px;
+    height: 55px;
+    margin: 30px 0 0 33px;
+  }
   .reset {
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    z-index: 888;
   }
   .board {
     min-height: 550px;
   }
   .footer {
-    bottom: 10px;
+    bottom: 40px;
   }
   .guideline-flex {
     margin: 10px;
@@ -595,7 +1036,76 @@ a {
   }
 }
 @media (min-width: 1350px) {
+  .header {
+    margin-top: 20px;
+    min-height: 200px;
+    width: 80%;
+  }
+  .logo {
+    width: 25%;
+  }
+  .result {
+    width: 20%;
+    height: 150px;
+  }
+  .end {
+    padding: 1em 2.5em;
+  }
+  .result p {
+    font-size: 2rem;
+  }
+  .result h1 {
+    font-size: 2.5rem;
+  }
   .game-board {
     margin-top: 150px;
+  }
+  .symbols {
+    margin-top: 50px;
+    max-width: 1200px;
+    background-size: 500px;
+    background-position: 50% 10px;
+  }
+  .symbols img {
+    width: 250px;
+    height: 250px;
+  }
+  .spock-bg {
+    width: 250px;
+    height: 250px;
+    top: 10% ;
+    left: -10%;
+  }
+  .lizard-bg {
+    width: 250px;
+    height: 250px;
+    bottom: 5% ;
+    left: 3%;
+  }
+  .spock, .lizard {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+  }
+  .scissors {
+    top: -10%;
+    left: 0 ;
+  }
+  .rock {
+    right: 5%;
+    bottom: 5%;
+  }
+  .paper {
+    right: -15%;
+    top: 15%;
+  }
+  #icon-spock, #icon-lizard {
+    width: 100px;
+    height: 100px;
+    margin: 40px 0 0 55px;
+  }
+  .footer {
+    top: 124%;
   }
 }
