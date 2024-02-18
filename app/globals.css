@@ -5,11 +5,16 @@
   --ScoreText: hsl(229, 64%, 46%);
   --HeaderOutline: hsl(217, 16%, 45%);
 
-  --ScissorsGradient: hsl(39, 89%, 49%) to hsl(40, 84%, 53%);
-  --PaperGradient: hsl(230, 89%, 62%) to hsl(230, 89%, 65%);
-  --RockGradient: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
-  --LizardGradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
-  --Cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
+  --ScissorsGradient-1: hsl(39, 89%, 49%);
+  --ScissorsGradient-2: hsl(40, 84%, 53%);
+  --PaperGradient-1: hsl(230, 89%, 62%);
+  --PaperGradient-2: hsl(230, 89%, 65%);
+  --RockGradient-1: hsl(349, 71%, 52%);
+  --RockGradient-2: hsl(349, 70%, 56%);
+  --LizardGradient-1: hsl(261, 73%, 60%);
+  --LizardGradient-2: hsl(261, 72%, 63%);
+  --SpockGradient-1: hsl(189, 59%, 53%);
+  --SpockGradient-2: hsl(189, 58%, 57%);
 
   --Background: hsl(214, 47%, 23%) to hsl(237, 49%, 15%);
 }
@@ -36,21 +41,19 @@ a {
   flex-direction: column;
   align-items: center;
 }
-.board {
-  width: 100%;
-}
 .login {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: zoom 0.3s ease-in-out;
 }
 .log.header {
   margin-top: 0;
   height: 100px;
 }
-.triangle {
+.pentagon {
   margin-top: 5px;
   width: 95%;
   height: 95%;
@@ -98,56 +101,187 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 40px;
+  width: 100%;
+  animation: zoom 0.3s ease-in-out;
 }
 .spock-bg {
   position: absolute;
-  width: 115px;
-  height: 115px;
-  top: 120px ;
+  width: 100px;
+  height: 100px;
+  top: 25%;
   left: -30px;
   border-radius: 50%;
-  background: hsl(189, 58%, 57%);
+  background-image: linear-gradient(
+    to bottom,
+    var(--SpockGradient-1),
+    var(--SpockGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+.rock-bg {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
+  right: -10px;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to bottom,
+    var(--RockGradient-1),
+    var(--RockGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+.paper-bg {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 25%;
+  right: -30px;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to bottom,
+    var(--PaperGradient-1),
+    var(--PaperGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+.scissors-bg {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 35%;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to bottom,
+    var(--ScissorsGradient-1),
+    var(--ScissorsGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
 }
 .lizard-bg {
   position: absolute;
-  width: 120px;
-  height: 120px;
-  bottom: 20px ;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
   left: 0;
   border-radius: 50%;
-  background: hsl(261, 72%, 63%);
+  background: linear-gradient(
+    to bottom,
+    var(--LizardGradient-1),
+    var(--LizardGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
 }
-.spock, .lizard {
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  top: 12%;
-  left: 12%;
-  border-radius: 50%;
-  background: #fff;
-}
+.lizard,
+.spock,
+.rock,
+.paper,
 .scissors {
   position: absolute;
-  left: 100px;
+  width: 80px;
+  height: 80px;
+  top: 10%;
+  left: 10%;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: inset 0 7px rgba(0, 0, 0, 0.15);
 }
-.rock {
+.img-wrapper {
+  border-radius: none;
+  width: 110px;
+  height: 110px;
+}
+.img-wrapper.choice {
+  margin-top: 30px;
+  background: hsl(237, 49%, 15%);
+  border-radius: 50%;
+}
+.choice.spock,
+.choice.lizard,
+.choice.rock,
+.choice.paper,
+.choice.scissors {
+  position: relative;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 15px 50px -10px;
+  width: 110px;
+  height: 110px;
+}
+.choice::before {
+  content: "";
   position: absolute;
-  right: 0;
-  bottom: 15px;
+  left: -15%;
+  top: -15%;
+  width: 130%;
+  height: 130%;
+  border-radius: 50%;
+  z-index: -1;
 }
-.paper {
-  position: absolute;
-  right: -30px;
-  top: 120px;
+.user-img {
+  width: 60px;
+  height: 60px;
+  margin: 30px 0 0 30px;
 }
-#icon-spock, #icon-lizard {
-  width: 45px;
-  height: 45px;
-  margin: 20px 0 0 28px;
+.choice.paper::before {
+  background: linear-gradient(
+    to bottom,
+    var(--PaperGradient-1),
+    var(--PaperGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+.choice.scissors::before {
+  background: linear-gradient(
+    to bottom,
+    var(--ScissorsGradient-1),
+    var(--ScissorsGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+.choice.rock::before {
+  background: linear-gradient(
+    to bottom,
+    var(--RockGradient-1),
+    var(--RockGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+.choice.lizard::before {
+  background: linear-gradient(
+    to bottom,
+    var(--LizardGradient-1),
+    var(--LizardGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+.choice.spock::before {
+  background: linear-gradient(
+    to bottom,
+    var(--SpockGradient-1),
+    var(--SpockGradient-2)
+  );
+  box-shadow: inset 0 -7px rgba(0, 0, 0, 0.15);
+}
+#icon-spock,
+#icon-lizard,
+#icon-rock,
+#icon-paper,
+#icon-scissors {
+  width: 40px;
+  height: 40px;
+  margin: 20px 0 0 20px;
+}
+#icon-spock {
+  width: 38px;
+  height: 38px;
 }
 #icon-lizard {
-  margin-left: 25px;
+  margin-left: 20px;
 }
 .symbols {
   position: relative;
@@ -157,8 +291,9 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 450px;
-  width: 80%;
+  height: 350px;
+  background-position: 50% 10px;
+  width: 75%;
 }
 .symbols .effect {
   cursor: pointer;
@@ -167,14 +302,9 @@ a {
 .symbols .effect:hover {
   transform: translate3d(0px, -8px, 0px);
 }
-.symbols img,
-.mobile-board img {
+.symbols img {
   width: 120px;
   height: 120px;
-}
-.mobile-board img {
-  width: 130px;
-  height: 130px;
 }
 .footer {
   position: absolute;
@@ -188,6 +318,11 @@ a {
   border-radius: 5px;
   cursor: pointer;
 }
+.rules:hover {
+  color: hsl(237, 85%, 5%);
+  background: #fff;
+  font-weight: 700;
+}
 .mobile-board {
   margin-top: 100px;
   padding: 10px;
@@ -196,9 +331,7 @@ a {
   min-height: 200px;
   width: 90%;
   justify-content: space-between;
-}
-.cpu {
-  margin-left: 50px;
+  animation: zoom 0.3s ease-in-out;
 }
 .mobile-summary {
   margin-top: 50px;
@@ -224,11 +357,61 @@ a {
 .user {
   margin-left: 10px;
 }
+.cpu {
+  margin-left: 50px;
+}
 .user,
 .cpu {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+}
+.win::before,
+.win::after {
+  content: "";
+  background: hsl(229, 25%, 31%);
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 32%;
+  left: 5%;
+  border-radius: 50%;
+}
+.win::before {
+  opacity: 0.7;
+  transform: scale(1.4);
+  z-index: -5;
+  animation: anim;
+}
+.win::after {
+  opacity: 0.4;
+  transform: scale(1.9);
+  z-index: -6;
+  animation: anim2;
+}
+.cpu-win::before,
+.cpu-win::after {
+  content: "";
+  background: hsl(229, 25%, 31%);
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 32%;
+  right: 5%;
+  border-radius: 50%;
+}
+.cpu-win::before {
+  opacity: 0.7;
+  transform: scale(1.4);
+  z-index: -5;
+  animation: anim;
+}
+.cpu-win::after {
+  opacity: 0.4;
+  transform: scale(1.9);
+  z-index: -6;
+  animation: anim2;
 }
 .mobile-board h3 {
   margin-top: 20px;
@@ -239,15 +422,20 @@ a {
   font-family: "Barlow Semi Condensed", sans-serif;
   padding: 0.5em 1em;
   letter-spacing: 1px;
+  margin-top: 50px;
   border: 1px solid #fff;
   border-radius: 5px;
   background: #fff;
   cursor: pointer;
 }
-.reset:hover,
 .end:hover,
 .play:hover {
   color: hsl(349, 71%, 52%);
+}
+.reset:hover {
+  color: #fff;
+  background: transparent;
+  border: 1px solid white;
 }
 .end-game {
   background: hsl(237, 49%, 15%);
@@ -258,6 +446,7 @@ a {
   color: #fff;
   font-size: 10px;
   padding: 0.3em 1em;
+  text-align: center;
 }
 .game-board,
 .rules-bg {
@@ -297,7 +486,22 @@ a {
 .close:hover {
   color: rgb(54, 52, 52);
 }
-
+@keyframes anim {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+@keyframes anim2 {
+  from {
+    transform: scale(0);
+  }
+  t0 {
+    transform: scale(1.9);
+  }
+}
 @keyframes zoom {
   0% {
     transform: scale(0.3);
@@ -309,45 +513,59 @@ a {
 
 @media (min-width: 539px) and (max-width: 670px) {
   .board {
-    margin-top: 0;
+    margin-top: 80px;
   }
   .spock-bg {
     width: 120px;
     height: 120px;
-    top: 120px ;
+    top: 20%;
     left: 0;
   }
   .lizard-bg {
     width: 120px;
     height: 120px;
-    bottom: 8% ;
-    left: 10%;
+    bottom: 0;
+    left: 15%;
   }
-  .spock, .lizard {
-    width: 95px;
-    height: 95px;
-    top: 12%;
-    left: 10%;
+  .rock-bg {
+    width: 120px;
+    height: 120px;
+    bottom: 0;
+    right: 15%;
   }
-  .scissors {
-    top: 5%;
+  .paper-bg {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    right: 0;
+  }
+  .scissors-bg {
+    width: 120px;
+    height: 120px;
+    top: -5%;
     left: 35%;
   }
-  .rock {
-    right: 10%;
-    bottom: 5%;
+  .spock,
+  .lizard,
+  .rock,
+  .paper,
+  .scissors {
+    width: 95px;
+    height: 95px;
+    top: 10%;
+    left: 10%;
   }
-  .paper {
-    right: -3%;
-    top: 25%;
-  }
-  #icon-spock, #icon-lizard {
+  #icon-spock,
+  #icon-lizard,
+  #icon-paper,
+  #icon-rock,
+  #icon-scissors {
     width: 50px;
     height: 50px;
-    margin: 25px 0 0 30px;
+    margin: 25px 0 0 20px;
   }
   #icon-lizard {
-    margin-left: 30px;
+    margin-left: 25px;
   }
   .reset {
     margin-top: 50px;
@@ -381,31 +599,77 @@ a {
     width: 650px;
     min-height: 650px;
   }
-  .scissors {
-    margin-left: 230px;
-  }
-  .rock {
-    margin-top: 80px;
-  }
   .spock-bg {
     position: absolute;
     width: 165px;
     height: 165px;
-    top: 120px ;
+    top: 120px;
     left: 0;
     border-radius: 50%;
     background: hsl(189, 58%, 57%);
+  }
+  .choice {
+    position: relative;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .choice::before {
+    content: "";
+    position: absolute;
+    left: -15%;
+    top: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .choice.paper::before {
+    background: linear-gradient(
+      to bottom,
+      var(--PaperGradient-1),
+      var(--PaperGradient-2)
+    );
+  }
+  .choice.scissors::before {
+    background: linear-gradient(
+      to bottom,
+      var(--ScissorsGradient-1),
+      var(--ScissorsGradient-2)
+    );
+  }
+  .choice.rock::before {
+    background: linear-gradient(
+      to bottom,
+      var(--RockGradient-1),
+      var(--RockGradient-2)
+    );
+  }
+  .choice.lizard::before {
+    background: linear-gradient(
+      to bottom,
+      var(--LizardGradient-1),
+      var(--LizardGradient-2)
+    );
+  }
+  .choice.spock::before {
+    background: linear-gradient(
+      to bottom,
+      var(--SpockGradient-1),
+      var(--SpockGradient-2)
+    );
   }
   .lizard-bg {
     position: absolute;
     width: 165px;
     height: 165px;
-    bottom: 20px ;
+    bottom: 20px;
     left: 0;
     border-radius: 50%;
     background: hsl(261, 72%, 63%);
   }
-  .spock, .lizard {
+  .spock,
+  .lizard {
     position: absolute;
     width: 128px;
     height: 128px;
@@ -428,7 +692,11 @@ a {
     right: -30px;
     top: 120px;
   }
-  #icon-spock, #icon-lizard {
+  #icon-spock,
+  #icon-lizard,
+  #icon-scissors,
+  #icon-rock,
+  #icon-paper {
     width: 65px;
     height: 65px;
     margin: 30px 0 0 35px;
@@ -444,23 +712,23 @@ a {
     align-items: center;
     color: #fff;
     height: 300px;
+    animation: zoom 0.3s ease-in-out;
   }
   .game-board h3 {
     margin-bottom: 30px;
     letter-spacing: 1.5px;
   }
-  .game-board img {
-    width: 300px;
-    height: 300px;
-  }
   .user,
   .cpu {
     height: 100%;
-    justify-content: center;
+    justify-content: space-between;
     margin-left: 0;
   }
   .summary {
     animation: zoom 3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .summary h1 {
     font-size: 3rem;
@@ -523,15 +791,46 @@ a {
     color: rgb(177, 172, 172);
     cursor: pointer;
   }
+  .reset {
+    margin-top: 0;
+  }
 }
-
 @media (min-width: 670px) and (max-width: 840px) {
   .game-board {
     margin-top: 150px;
+    animation: zoom 0.3s ease-in-out;
   }
-  .game-board img {
-    width: 250px;
-    height: 250px;
+  .win::before,
+  .win::after {
+    width: 200px;
+    height: 200px;
+    top: 49%;
+    left: 7%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 200px;
+    height: 200px;
+    top: 49%;
+    right: 5%;
+  }
+  .win::before,
+  .cpu-win::before {
+    transform: scale(1.6);
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    margin: 0 35px 50px 0;
+    width: 180px;
+    height: 180px;
+  }
+  .user-img {
+    width: 100px;
+    height: 100px;
+    margin-left: 45px;
   }
   .summary h1 {
     font-size: 2rem;
@@ -568,13 +867,9 @@ a {
     width: 165px;
     height: 165px;
   }
-  .rock {
-    margin-top: 50px;
-  }
-  .paper,
-  .rock,
-  .scissors {
-    width: 50%;
+  .img-wrapper {
+    width: 200px;
+    height: 200px;
   }
   .scissors {
     margin: 0;
@@ -582,34 +877,45 @@ a {
   .spock-bg {
     width: 165px;
     height: 165px;
-    top: 20% ;
+    top: 20%;
     left: 5%;
   }
   .lizard-bg {
     width: 165px;
     height: 165px;
-    bottom: 20% ;
-    left: 10%;
+    bottom: 23%;
+    left: 15%;
   }
-  .spock, .lizard {
+  .rock-bg {
+    width: 165px;
+    height: 165px;
+    bottom: 23%;
+    right: 15%;
+  }
+  .paper-bg {
+    width: 165px;
+    height: 165px;
+    top: 20%;
+    right: 5%;
+  }
+  .scissors-bg {
+    width: 165px;
+    height: 165px;
+    top: 0;
+    left: 35%;
+  }
+  .spock,
+  .lizard,
+  .rock,
+  .paper,
+  .scissors {
     width: 128px;
     height: 128px;
     top: 12%;
     left: 12%;
   }
-  .scissors {
-    left: 37%;
-  }
-  .rock {
-    right: -10%;
-    bottom: 19%;
-  }
-  .paper {
-    left: 65%;
-    top: 22%;
-  }
   .footer {
-    top: 117% ;
+    top: 117%;
   }
 }
 @media (min-width: 719px) and (max-width: 750px) {
@@ -623,9 +929,23 @@ a {
   .result {
     min-height: 110px;
   }
-  .game-board img {
-    width: 220px;
-    height: 220px;
+  .game-board {
+    margin-top: 50px;
+    animation: zoom 0.3s ease-in-out;
+  }
+  .win::before,
+  .win::after {
+    width: 200px;
+    height: 200px;
+    top: 37%;
+    left: 7%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 200px;
+    height: 200px;
+    top: 37%;
+    right: 5%;
   }
   .footer {
     top: 114%;
@@ -652,10 +972,10 @@ a {
     min-height: 110px;
   }
   .result p {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .result h1 {
-    font-size: 2.3rem;
+    font-size: 2rem;
   }
   .summary h1 {
     font-size: 2rem;
@@ -663,15 +983,44 @@ a {
   .play {
     padding: 1em 1.8em;
   }
-  .game-board img {
-    width: 280px;
-    height: 280px;
+  .win::before,
+  .win::after {
+    width: 200px;
+    height: 200px;
+    top: 63%;
+    left: 11%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 200px;
+    height: 200px;
+    top: 63%;
+    right: 11%;
+  }
+  .win::before,
+  .cpu-win::before {
+    transform: scale(1.6);
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    margin: 0 80px 50px 20px;
+    width: 200px;
+    height: 200px;
+  }
+  .user-img {
+    width: 130px;
+    height: 130px;
+    margin-top: 30px;
   }
   .board {
     margin-top: 0;
     height: 500px;
   }
   .symbols {
+    margin-top: 80px;
     background-size: 350px;
     background-position: 50% 40px;
   }
@@ -680,129 +1029,50 @@ a {
     height: 150px;
   }
   .spock-bg {
-    width: 150px;
-    height: 150px;
-    top: 18% ;
+    width: 165px;
+    height: 165px;
+    top: 15%;
     left: 10%;
   }
   .lizard-bg {
-    width: 150px;
-    height: 150px;
-    bottom: 32% ;
+    width: 165px;
+    height: 165px;
+    bottom: 30%;
     left: 20%;
   }
-  .spock, .lizard {
-    width: 120px;
-    height: 120px;
-    top: 10%;
-    left: 10%;
-  }
-  .scissors {
-    left: 0 ;
-    top: 5%;
-  }
-  .rock {
+  .rock-bg {
+    width: 165px;
+    height: 165px;
+    bottom: 30%;
     right: 20%;
-    bottom: 32%;
   }
-  .paper {
-    right: 15%;
-    top: 18% ;
+  .paper-bg {
+    width: 165px;
+    height: 165px;
+    top: 15%;
+    right: 13%;
   }
-  #icon-spock, #icon-lizard {
-    width: 70px;
-    height: 70px;
-    margin: 25px 0 0 35px;
+  .scissors-bg {
+    width: 165px;
+    height: 165px;
+    top: -5%;
+    left: 35%;
   }
-  #icon-lizard {
-    margin-left: 30px;
-  }
-  .footer {
-    top: 140%;
-  }
-}
-@media (min-width: 900px) and (max-width: 915px) {
-  .header {
-    margin-top: 20px;
-    min-height: 220px;
-  }
-  .logo {
-    width: 200px;
-  }
-  .guideline {
-    height: 40%;
-  }
-  .result {
-    width: 18%;
-    min-height: 100px;
-  }
-  .result p {
-    font-size: 1.8rem;
-  }
-  .result h1 {
-    font-size: 3.5rem;
-  }
-  .summary h1 {
-    font-size: 2.5rem;
-  }
-  .game-board {
-    margin-top: 200px;
-  }
-  .play {
-    padding: 1em 1.5em;
-  }
-  .end {
-    padding: 1em 2em;
-  }
-  .symbols {
-    width: 800px;
-    min-height: 750px;
-    background-size: 500px;
-  }
-  .symbols img {
-    width: 200px;
-    height: 200px;
-  }
-  .spock-bg {
-    width: 200px;
-    height: 200px;
-    top: 25% ;
-    left: 10%;
-  }
-  .lizard-bg {
-    width: 200px;
-    height: 200px;
-    bottom: 10% ;
-    left: 15% ;
-  }
-  .spock, .lizard {
-    width: 150px;
-    height: 150px;
+  .spock,
+  .lizard,
+  .rock,
+  .paper,
+  .scissors {
+    width: 128px;
+    height: 128px;
     top: 12%;
     left: 12%;
   }
-  .scissors {
-    left: 10%;
-    top: 5%;
-  }
-  .rock {
-    right: 15% ;
-    bottom: 8%;
-  }
-  .paper {
-    right: 10%;
-    top: 25% ;
-  }
-  #icon-spock, #icon-lizard {
-    width: 75px;
-    height: 75px;
-    margin: 30px 0 0 45px;
-  }
-  #icon-lizard {
-    margin-left: 35px;
+  .summary h1 {
+    font-size: 1.7rem;
   }
   .footer {
-    top: 132%;
+    top: 140%;
   }
 }
 @media (min-width: 913px) and (max-width: 1200px) {
@@ -823,7 +1093,7 @@ a {
     justify-content: center;
   }
   .result p {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .result h1 {
     font-size: 3rem;
@@ -838,7 +1108,16 @@ a {
     width: 80%;
   }
   .game-board {
-    margin-top: 200px;
+    height: 500px;
+    width: 100%;
+    margin-top: 0;
+    animation: zoom 0.3s ease-in-out;
+  }
+  .user,
+  .cpu {
+    margin-top: 50px;
+    flex: 1;
+    height: 350px;
   }
   .board {
     width: 950px;
@@ -854,51 +1133,105 @@ a {
     width: 250px;
     height: 250px;
   }
-  .spock-bg {
+  .img-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+  .win::before,
+  .win::after {
+    width: 200px;
+    height: 200px;
+    top: 45%;
+    left: 12%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 200px;
+    height: 200px;
+    top: 45%;
+    right: 7%;
+  }
+  .win::before,
+  .cpu-win::before {
+    transform: scale(1.6);
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    position: relative;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 30px 50px 0;
+    width: 180px;
+    height: 180px;
+  }
+  .choice::before {
+    content: "";
     position: absolute;
+    left: -15%;
+    top: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .spock-bg {
     width: 250px;
     height: 250px;
-    top: 20% ;
+    top: 20%;
     left: 5%;
-    border-radius: 50%;
-    background: hsl(189, 58%, 57%);
   }
   .lizard-bg {
-    position: absolute;
     width: 250px;
     height: 250px;
-    bottom: 20px ;
+    bottom: 10%;
     left: 15%;
-    border-radius: 50%;
-    background: hsl(261, 72%, 63%);
   }
-  .spock, .lizard {
-    position: absolute;
+  .rock-bg {
+    width: 250px;
+    height: 250px;
+    bottom: 10%;
+    right: 15%;
+  }
+  .paper-bg {
+    width: 250px;
+    height: 250px;
+    top: 20%;
+    right: 5%;
+  }
+  .scissors-bg {
+    width: 250px;
+    height: 250px;
+    top: 0;
+    left: 35%;
+  }
+  .spock,
+  .lizard,
+  .rock,
+  .paper,
+  .scissors {
     width: 190px;
     height: 190px;
-    top: 12%;
+    top: 10%;
     left: 12%;
-    border-radius: 50%;
-    background: #fff;
   }
-  .scissors {
-    position: absolute;
-    left: 15%;
+  .user-img {
+    width: 100px;
+    height: 100px;
+    margin-left: 40px;
   }
-  .rock {
-    position: absolute;
-    right: 15% ;
-    bottom: 2% ;
-  }
-  .paper {
-    position: absolute;
-    right: 4% ;
-    top: 20% ;
-  }
-  #icon-spock, #icon-lizard {
+  #icon-spock,
+  #icon-lizard,
+  #icon-paper,
+  #icon-rock,
+  #icon-spock,
+  #icon-scissors {
     width: 120px;
     height: 120px;
-    margin: 40px 0 0 55px;
+    margin: 40px 0 0 40px;
   }
   .footer {
     bottom: 0;
@@ -908,25 +1241,278 @@ a {
     font-size: 12px;
     border-radius: 10px;
   }
+  .summary {
+    margin-left: 50px;
+    margin-top: 80px;
+  }
   .summary h1 {
     font-size: 2.5rem;
   }
   .play {
-    padding: 1em 1.8em;
+    padding: 1.5em 2.8em;
   }
   .reset {
-    margin-top: 150px;
+    margin-top: 30px;
   }
   .footer {
     top: 117%;
   }
 }
+@media (min-width: 900px) and (max-width: 914px) {
+  .header {
+    margin-top: 20px;
+    min-height: 220px;
+  }
+  .logo {
+    width: 200px;
+  }
+  .guideline {
+    height: 40%;
+  }
+  .result {
+    width: 18%;
+    min-height: 100px;
+  }
+  .result p {
+    font-size: 1.8rem;
+  }
+  .result h1 {
+    font-size: 3.5rem;
+  }
+  .summary {
+    margin: 150px 0 0 50px;
+  }
+  .summary h1 {
+    font-size: 2.5rem;
+  }
+  .game-board {
+    width: 100%;
+    padding-left: 50px;
+    margin-left: 50px;
+    animation: zoom 0.3s ease-in-out;
+  }
+  h3 {
+    margin-top: 100px;
+  }
+  .play {
+    padding: 1em 3em;
+  }
+  .end {
+    padding: 1em 2em;
+  }
+  .reset {
+    margin-top: 50px;
+  }
+  .win::before,
+  .win::after {
+    width: 230px;
+    height: 230px;
+    top: 45%;
+    left: 11%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 230px;
+    height: 230px;
+    top: 45%;
+    right: 9%;
+  }
+  .win::before,
+  .cpu-win::before {
+    transform: scale(1.5);
+  }
+  .win::after,
+  .cpu-win::after {
+    transform: scale(2);
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    margin: 0 30px 50px 0;
+    width: 180px;
+    height: 180px;
+  }
+  .user-img {
+    width: 100px;
+    height: 100px;
+    margin-left: 40px;
+  }
+  .user {
+    justify-content: start;
+  }
+  .cpu {
+    justify-content: start;
+    margin-right: 100px;
+  }
+  .symbols {
+    margin-top: 50px;
+    width: 800px;
+    min-height: 700px;
+    background-size: 600px;
+  }
+  .img-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+  .symbols img {
+    width: 200px;
+    height: 200px;
+  }
+  .spock-bg {
+    width: 200px;
+    height: 200px;
+    top: 20%;
+    left: 5%;
+  }
+  .lizard-bg {
+    width: 200px;
+    height: 200px;
+    bottom: 10%;
+    left: 15%;
+  }
+  .rock-bg {
+    width: 200px;
+    height: 200px;
+    bottom: 10%;
+    right: 15%;
+  }
+  .paper-bg {
+    width: 200px;
+    height: 200px;
+    top: 20%;
+    right: 5%;
+  }
+  .scissors-bg {
+    width: 200px;
+    height: 200px;
+    top: 0;
+    left: 35%;
+  }
+  .spock,
+  .lizard,
+  .rock,
+  .paper,
+  .scissors {
+    width: 150px;
+    height: 150px;
+    top: 12%;
+    left: 12%;
+  }
+  #icon-spock,
+  #icon-lizard,
+  #icon-paper,
+  #icon-rock,
+  #icon-scissors {
+    width: 75px;
+    height: 75px;
+    margin: 30px 0 0 45px;
+  }
+  #icon-lizard {
+    margin-left: 35px;
+  }
+  .footer {
+    top: 132%;
+  }
+}
+@media (min-width: 911px) and (max-width: 913px) {
+  .game-board {
+    min-height: 500px;
+  }
+  .win::before,
+  .win::after {
+    width: 230px;
+    height: 230px;
+    top: 62%;
+    left: 10%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 230px;
+    height: 230px;
+    top: 62%;
+    right: 7%;
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    margin: 0 30px 50px 0;
+    width: 200px;
+    height: 200px;
+  }
+  .user-img {
+    width: 120px;
+    height: 120px;
+  }
+}
 @media (min-width: 1023px) and (max-width: 1030px) {
+  .logo {
+    width: 20%;
+  }
   .guideline {
     height: 500px;
   }
+  .header {
+    width: 80%;
+  }
+  .game-board {
+    margin-top: 50px;
+    animation: zoom 0.3s ease-in-out;
+  }
   .board {
     min-height: 750px;
+  }
+  .win::before,
+  .win::after {
+    width: 280px;
+    height: 280px;
+    top: 44%;
+    left: 8%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 280px;
+    height: 280px;
+    top: 44%;
+    right: 2%;
+  }
+  .win::before,
+  .cpu-win::before {
+    transform: scale(1.5);
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    position: relative;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 15px 50px -10px;
+    width: 230px;
+    height: 230px;
+  }
+  .choice::before {
+    content: "";
+    position: absolute;
+    left: -15%;
+    top: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .user-img {
+    width: 150px;
+    height: 150px;
+    margin-left: 45px;
+  }
+  .play {
+    padding: 1.5em 3.5em;
   }
   .reset {
     margin-bottom: 10px;
@@ -948,8 +1534,56 @@ a {
   .board {
     margin-top: 20px;
   }
-  .symbols {
+  .user {
+    justify-content: start;
+    width: 30%;
+  }
+  .cpu {
+    justify-content: start;
+  }
+  .win::before,
+  .win::after {
+    width: 290px;
+    height: 290px;
+    top: 33%;
+    left: 5%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 290px;
+    height: 290px;
+    top: 33%;
+    right: 5%;
+  }
+  .img-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    position: relative;
     margin-top: 20px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 15px 50px -10px;
+    width: 200px;
+    height: 200px;
+  }
+  .choice::before {
+    content: "";
+    position: absolute;
+    left: -15%;
+    top: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .symbols {
+    margin-top: 80px;
     background-size: 350px;
     background-position: 50% 20px;
     width: 80%;
@@ -958,65 +1592,61 @@ a {
     width: 150px;
     height: 150px;
   }
-  .rock {
-    margin-top: 100px;
-    margin-left: 150px;
-  }
-  .paper,
-  .rock,
-  .scissors {
-    width: 40%;
-  }
-  .paper {
-    margin-left: 150px;
-  }
-  .scissors {
-    margin: 0;
+  .game-board {
+    padding-right: 50px;
   }
   .spock-bg {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    top: 10% ;
-    left: 17% ;
-    border-radius: 50%;
-    background: hsl(189, 58%, 57%);
+    width: 165px;
+    height: 165px;
+    top: 10%;
+    left: 15%;
   }
   .lizard-bg {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    bottom: 37%;
-    left: 27%;
-    border-radius: 50%;
-    background: hsl(261, 72%, 63%);
+    width: 165px;
+    height: 165px;
+    bottom: 33%;
+    left: 25%;
   }
-  .spock, .lizard {
-    position: absolute;
+  .rock-bg {
+    width: 165px;
+    height: 165px;
+    bottom: 33%;
+    right: 25%;
+  }
+  .paper-bg {
+    width: 165px;
+    height: 165px;
+    top: 10%;
+    right: 19%;
+  }
+  .scissors-bg {
+    width: 165px;
+    height: 165px;
+    top: -10%;
+    left: 38%;
+  }
+  .spock,
+  .lizard,
+  .rock,
+  .paper,
+  .scissors {
+    width: 125px;
+    height: 125px;
+    top: 12%;
+    left: 12%;
+  }
+  .user-img {
     width: 110px;
     height: 110px;
-    top: 12%;
-    left: 13%;
-    border-radius: 50%;
-    background: #fff;
+    margin: 35px 0 0 45px;
   }
-  .scissors {
-    position: absolute;
-    left: 40%;
-  }
-  .rock {
-    position: absolute;
-    right: 5%;
-    bottom: 37%;
-  }
-  .paper {
-    position: absolute;
-    right: -3%;
-    top: 10%;
-  }
-  #icon-spock, #icon-lizard {
-    width: 55px;
-    height: 55px;
+  #icon-spock,
+  #icon-lizard,
+  #icon-paper,
+  #icon-scissors,
+  #icon-rock {
+    width: 65px;
+    height: 65px;
     margin: 30px 0 0 33px;
   }
   .reset {
@@ -1061,53 +1691,119 @@ a {
   }
   .game-board {
     margin-top: 150px;
+    width: 100%;
+    animation: zoom 0.3s ease-in-out;
+  }
+  .user,
+  .cpu {
+    flex: 1;
+  }
+  .win::before,
+  .win::after {
+    width: 230px;
+    height: 230px;
+    top: 59%;
+    left: 7%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 230px;
+    height: 230px;
+    top: 59%;
+    right: 8%;
+  }
+  .win::before,
+  .cpu-win::before {
+    transform: scale(1.9);
+  }
+  .win::after,
+  .cpu-win::after {
+    transform: scale(2.7);
+  }
+  .choice.spock,
+  .choice.lizard,
+  .choice.rock,
+  .choice.paper,
+  .choice.scissors {
+    margin: 0 75px 50px -10px;
+    width: 200px;
+    height: 200px;
+  }
+  .choice::before {
+    content: "";
+    position: absolute;
+    left: -15%;
+    top: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    z-index: -1;
   }
   .symbols {
-    margin-top: 50px;
+    margin-top: 100px;
     max-width: 1200px;
-    background-size: 500px;
+    background-size: 600px;
     background-position: 50% 10px;
   }
   .symbols img {
     width: 250px;
     height: 250px;
   }
+  .user-img {
+    width: 110px;
+    height: 110px;
+    margin-left: 50px;
+  }
   .spock-bg {
     width: 250px;
     height: 250px;
-    top: 10% ;
+    top: 15%;
     left: -10%;
   }
   .lizard-bg {
     width: 250px;
     height: 250px;
-    bottom: 5% ;
-    left: 3%;
+    bottom: 0;
+    left: 5%;
   }
-  .spock, .lizard {
-    width: 200px;
-    height: 200px;
-    top: 10%;
-    left: 10%;
-  }
-  .scissors {
-    top: -10%;
-    left: 0 ;
-  }
-  .rock {
+  .rock-bg {
+    width: 250px;
+    height: 250px;
+    bottom: 0;
     right: 5%;
-    bottom: 5%;
   }
-  .paper {
-    right: -15%;
+  .paper-bg {
+    width: 250px;
+    height: 250px;
     top: 15%;
+    right: -15%;
   }
-  #icon-spock, #icon-lizard {
+  .scissors-bg {
+    width: 250px;
+    height: 250px;
+    top: -15%;
+    left: 35%;
+  }
+  .spock,
+  .lizard,
+  .rock,
+  .paper,
+  .scissors {
+    width: 190px;
+    height: 190px;
+    top: 12%;
+    left: 12%;
+  }
+  #icon-spock,
+  #icon-lizard,
+  #icon-paper,
+  #icon-scissors,
+  #icon-rock {
     width: 100px;
     height: 100px;
     margin: 40px 0 0 55px;
   }
   .footer {
-    top: 124%;
+    top: 128%;
   }
 }

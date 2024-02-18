@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { TbTriangleInverted } from "react-icons/tb";
+import { BsPentagon } from "react-icons/bs";
 
 const page = () => {
   return (
@@ -11,7 +11,7 @@ const page = () => {
           <img src="images/logo-bonus.svg" alt="logo" className="title" />
         </div>
         <div className="result">
-          <TbTriangleInverted className="triangle" />
+          <BsPentagon className="pentagon" />
         </div>
       </div>
       <Link href="/homepage">
