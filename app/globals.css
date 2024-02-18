@@ -1651,7 +1651,6 @@ a {
   }
   .reset {
     margin-bottom: 50px;
-    z-index: 888;
   }
   .board {
     min-height: 550px;
