@@ -766,7 +766,7 @@ a {
     justify-content: space-around;
     position: static;
     position: absolute;
-    inset: 150px 150px 150px 150px;
+    inset: 150px 150px 130px 90px;
     width: 50%;
     height: 50%;
     margin: auto;
@@ -1626,7 +1626,7 @@ a {
     min-height: 550px;
   }
   .footer {
-    bottom: 40px;
+    bottom: 10px;
   }
   .guideline-flex {
     margin: 10px;
