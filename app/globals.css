@@ -308,7 +308,7 @@ a {
 }
 .footer {
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
 }
 .rules {
   color: #fff;
@@ -347,8 +347,9 @@ a {
   background: #fff;
   color: var(--DarkText);
   font-weight: 600;
-  padding: 1em 4.5em;
+  padding: 1em 2.5em;
   border-radius: 8px;
+  letter-spacing: 5px;
   cursor: pointer;
 }
 .mobile-summary h1 {
@@ -374,7 +375,7 @@ a {
   position: absolute;
   width: 150px;
   height: 150px;
-  top: 32%;
+  top: 33.5%;
   left: 5%;
   border-radius: 50%;
 }
@@ -397,7 +398,7 @@ a {
   position: absolute;
   width: 150px;
   height: 150px;
-  top: 32%;
+  top: 33.5%;
   right: 5%;
   border-radius: 50%;
 }
@@ -422,16 +423,19 @@ a {
   font-family: "Barlow Semi Condensed", sans-serif;
   padding: 0.5em 1em;
   letter-spacing: 1px;
-  margin-top: 50px;
+  margin-top: 30px;
   border: 1px solid #fff;
   border-radius: 5px;
   background: #fff;
   cursor: pointer;
 }
-.play:hover {
+.game:hover {
   color: hsl(349, 71%, 52%);
   background: transparent;
   border: 1px solid white;
+}
+.play:hover {
+  color: hsl(349, 71%, 52%);
 }
 .reset:hover {
   color: #fff;
@@ -570,6 +574,20 @@ a {
   }
   #icon-lizard {
     margin-left: 25px;
+  }
+  .win::before,
+  .win::after {
+    width: 150px;
+    height: 150px;
+    top: 33%;
+    left: 6%;
+  }
+  .cpu-win::before,
+  .cpu-win::after {
+    width: 150px;
+    height: 150px;
+    top: 33%;
+    right: 5%;
   }
   .reset {
     margin-top: 50px;
@@ -740,6 +758,7 @@ a {
   }
   .play {
     text-align: center;
+    letter-spacing: 5px;
   }
   .footer {
     right: 10px;
@@ -810,14 +829,14 @@ a {
   .win::after {
     width: 200px;
     height: 200px;
-    top: 49%;
+    top: 50%;
     left: 7%;
   }
   .cpu-win::before,
   .cpu-win::after {
     width: 200px;
     height: 200px;
-    top: 49%;
+    top: 50%;
     right: 5%;
   }
   .win::before,
@@ -848,7 +867,7 @@ a {
     font-size: 2rem;
   }
   .play {
-    padding: 1em 2em;
+    padding: 1em 0.5em;
   }
   .footer {
     bottom: 30px;
@@ -967,21 +986,22 @@ a {
     font-size: 2rem;
   }
   .play {
-    padding: 1em 1.8em;
+    padding: 1em 1em;
+    letter-spacing: 1px;
   }
   .win::before,
   .win::after {
     width: 200px;
     height: 200px;
-    top: 63%;
-    left: 11%;
+    top: 67%;
+    left: 11.5%;
   }
   .cpu-win::before,
   .cpu-win::after {
     width: 200px;
     height: 200px;
-    top: 63%;
-    right: 11%;
+    top: 67%;
+    right: 10.5%;
   }
   .win::before,
   .cpu-win::before {
@@ -1117,14 +1137,14 @@ a {
   .win::after {
     width: 200px;
     height: 200px;
-    top: 45%;
+    top: 46.5%;
     left: 12%;
   }
   .cpu-win::before,
   .cpu-win::after {
     width: 200px;
     height: 200px;
-    top: 45%;
+    top: 46.5%;
     right: 7%;
   }
   .win::before,
@@ -1218,14 +1238,15 @@ a {
     border-radius: 10px;
   }
   .summary {
-    margin-left: 50px;
-    margin-top: 80px;
+    margin: 80px 0 0 50px;
   }
   .summary h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   .play {
     padding: 1.5em 2.8em;
+    font-size: 18px;
+    letter-spacing: 5px;
   }
   .reset {
     margin-top: 30px;
@@ -1393,14 +1414,14 @@ a {
   .win::after {
     width: 230px;
     height: 230px;
-    top: 62%;
+    top: 66%;
     left: 10%;
   }
   .cpu-win::before,
   .cpu-win::after {
     width: 230px;
     height: 230px;
-    top: 62%;
+    top: 66%;
     right: 7%;
   }
   .choice.spock,
@@ -1507,6 +1528,11 @@ a {
     justify-content: start;
     width: 30%;
   }
+  .play {
+    padding: 1em 4.5em;
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
   .cpu {
     justify-content: start;
   }
@@ -1514,14 +1540,14 @@ a {
   .win::after {
     width: 290px;
     height: 290px;
-    top: 33%;
+    top: 35.5%;
     left: 5%;
   }
   .cpu-win::before,
   .cpu-win::after {
     width: 290px;
     height: 290px;
-    top: 33%;
+    top: 35.5%;
     right: 5%;
   }
   .img-wrapper {

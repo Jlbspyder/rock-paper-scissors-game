@@ -15,7 +15,7 @@ const page = () => {
         </div>
       </div>
       <Link href="/homepage">
-        <div className="play">START GAME</div>
+        <div className="play game">START GAME</div>
       </Link>
     </div>
   );
