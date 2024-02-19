@@ -61,8 +61,8 @@ a {
 }
 .header {
   width: 80%;
-  min-height: 120px;
-  margin-top: 10px;
+  min-height: 150px;
+  margin-top: 20px;
   padding: 10px;
   border: 5px solid var(--HeaderOutline);
   border-radius: 8px;
@@ -80,7 +80,7 @@ a {
 }
 .result {
   width: 30%;
-  height: 90%;
+  min-height: 90%;
   padding-bottom: 10px;
   background: #fff;
   border-radius: 5px;
@@ -428,9 +428,10 @@ a {
   background: #fff;
   cursor: pointer;
 }
-.end:hover,
 .play:hover {
   color: hsl(349, 71%, 52%);
+  background: transparent;
+  border: 1px solid white;
 }
 .reset:hover {
   color: #fff;
@@ -445,8 +446,11 @@ a {
 .end {
   color: #fff;
   font-size: 10px;
-  padding: 0.3em 1em;
+  padding: 0.8em 1em;
   text-align: center;
+}
+.end:hover {
+  color: red;
 }
 .game-board,
 .rules-bg {
@@ -582,10 +586,11 @@ a {
   .mobile-guideline {
     display: none;
   }
-  .header {
-    width: 70%;
-  }
   .result {
+    width: 20%;
+    min-height: 80%;
+  }
+  .start.result {
     width: 15%;
   }
   .result p {
@@ -778,6 +783,7 @@ a {
     visibility: visible;
     opacity: 1;
     transform: scale(1);
+    z-index: 9999;
   }
   .guideline-flex {
     width: 90%;
@@ -834,13 +840,6 @@ a {
   }
   .summary h1 {
     font-size: 2rem;
-  }
-  .header {
-    margin-top: 20px;
-    min-height: 140px;
-  }
-  .result {
-    min-height: 110px;
   }
   .result p {
     font-size: 1.3rem;
@@ -922,13 +921,6 @@ a {
   .guideline {
     height: 90%;
   }
-  .header {
-    width: 80%;
-    min-height: 130px;
-  }
-  .result {
-    min-height: 110px;
-  }
   .game-board {
     margin-top: 50px;
     animation: zoom 0.3s ease-in-out;
@@ -955,9 +947,6 @@ a {
   .container {
     min-height: 500px;
   }
-  .header {
-    min-height: 140px;
-  }
   .guideline {
     height: 70%;
     width: 40%;
@@ -967,9 +956,6 @@ a {
   }
   .beats {
     width: 200px;
-  }
-  .result {
-    min-height: 110px;
   }
   .result p {
     font-size: 1rem;
@@ -1080,26 +1066,16 @@ a {
     min-height: 1000px;
   }
   .header {
-    width: 90%;
-    min-height: 170px;
+    min-height: 200px;
   }
   .logo {
     width: 150px;
-  }
-  .result {
-    padding-bottom: 10px;
-    width: 15%;
-    min-height: 140px;
-    justify-content: center;
   }
   .result p {
     font-size: 1.5rem;
   }
   .result h1 {
     font-size: 3rem;
-  }
-  .end {
-    padding: 0.8em 2em;
   }
   .guideline {
     height: 80%;
@@ -1213,10 +1189,10 @@ a {
   .rock,
   .paper,
   .scissors {
-    width: 190px;
-    height: 190px;
+    width: 200px;
+    height: 200px;
     top: 10%;
-    left: 12%;
+    left: 11%;
   }
   .user-img {
     width: 100px;
@@ -1253,6 +1229,7 @@ a {
   }
   .reset {
     margin-top: 30px;
+    z-index: 100;
   }
   .footer {
     top: 117%;
@@ -1260,18 +1237,13 @@ a {
 }
 @media (min-width: 900px) and (max-width: 914px) {
   .header {
-    margin-top: 20px;
-    min-height: 220px;
+    min-height: 250px;
   }
   .logo {
     width: 200px;
   }
   .guideline {
     height: 40%;
-  }
-  .result {
-    width: 18%;
-    min-height: 100px;
   }
   .result p {
     font-size: 1.8rem;
@@ -1296,9 +1268,6 @@ a {
   }
   .play {
     padding: 1em 3em;
-  }
-  .end {
-    padding: 1em 2em;
   }
   .reset {
     margin-top: 50px;
@@ -1455,9 +1424,6 @@ a {
   .guideline {
     height: 500px;
   }
-  .header {
-    width: 80%;
-  }
   .game-board {
     margin-top: 50px;
     animation: zoom 0.3s ease-in-out;
@@ -1522,14 +1488,17 @@ a {
   }
 }
 @media (min-width: 1200px) and (max-width: 1350px) {
-  .result {
-    min-height: 100px;
+  .start.result {
+    width: 10%;
   }
   .result p {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   .result h1 {
     font-size: 2rem;
+  }
+  .end {
+    padding: 1em 2em;
   }
   .board {
     margin-top: 20px;
@@ -1651,6 +1620,7 @@ a {
   }
   .reset {
     margin-bottom: 50px;
+    z-index: 0;
   }
   .board {
     min-height: 550px;
@@ -1668,25 +1638,17 @@ a {
 }
 @media (min-width: 1350px) {
   .header {
-    margin-top: 20px;
-    min-height: 200px;
+    min-height: 250px;
     width: 80%;
   }
   .logo {
     width: 25%;
   }
-  .result {
-    width: 20%;
-    height: 150px;
-  }
-  .end {
-    padding: 1em 2.5em;
-  }
   .result p {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
   .result h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   .game-board {
     margin-top: 150px;

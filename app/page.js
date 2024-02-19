@@ -10,7 +10,7 @@ const page = () => {
         <div className="logo">
           <img src="images/logo-bonus.svg" alt="logo" className="title" />
         </div>
-        <div className="result">
+        <div className="start result">
           <BsPentagon className="pentagon" />
         </div>
       </div>
