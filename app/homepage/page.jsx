@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MdOutlineClose } from "react-icons/md";
 
-const getLocalStorage = () => {
-  let gamePoint = localStorage.getItem("gameScore");
-  if (gamePoint) {
-    return (gamePoint = JSON.parse(gamePoint));
-  } else {
-    return 0;
-  }
-};
+// const getLocalStorage = () => {
+//   let gamePoint = localStorage.getItem("gameScore");
+//   if (gamePoint) {
+//     return (gamePoint = JSON.parse(gamePoint));
+//   } else {
+//     return 0;
+//   }
+// };
 
 const HomePage = () => {
   const [showGameBoard, setShowGameBoard] = useState(false);
@@ -18,15 +18,15 @@ const HomePage = () => {
   const [result, setResult] = useState("");
   const [win, setWin] = useState(false);
   const [lose, setLose] = useState(false);
-  const [score, setScore] = useState(getLocalStorage());
+  const [score, setScore] = useState(0);
   const [userPick, setUserPick] = useState("");
   const [compPick, setCompPick] = useState("");
 
   let point = 0;
 
-  useEffect(() => {
-    localStorage.setItem("gameScore", JSON.stringify(score));
-  }, [score]);
+  // useEffect(() => {
+  //   localStorage.setItem("gameScore", JSON.stringify(score));
+  // }, [score]);
 
   const restart = () => {
     setShowGameBoard(false);
