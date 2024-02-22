@@ -1,7 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MdOutlineClose } from "react-icons/md";
+
+const getLocalStorage = () => {
+  let gamePoint = localStorage.getItem("gameScore");
+  if (gamePoint) {
+    return (gamePoint = JSON.parse(gamePoint));
+  } else {
+    return 0;
+  }
+};
 
 const HomePage = () => {
   const [showGameBoard, setShowGameBoard] = useState(false);
@@ -9,11 +18,64 @@ const HomePage = () => {
   const [result, setResult] = useState("");
   const [win, setWin] = useState(false);
   const [lose, setLose] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(getLocalStorage());
   const [userPick, setUserPick] = useState("");
   const [compPick, setCompPick] = useState("");
 
   let point = 0;
+
+  useEffect(() => {
+    localStorage.setItem("gameScore", JSON.stringify(score));
+  }, [score]);
+
+  const restart = () => {
+    setShowGameBoard(false);
+    setWin(false);
+    setLose(false);
+    setCompPick("");
+  };
+
+  const setWinner = (winner) => {
+    setTimeout(() => {
+      setResult(winner);
+    }, 2000);
+    setResult("");
+  };
+
+  const setPoints = (newPoint) => {
+    point = newPoint;
+    const timer = setTimeout(() => {
+      setScore((point) => point + 3);
+      setWin(true);
+      setLose(false);
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  };
+  const setLoss = (newPoint) => {
+    point = newPoint;
+    const timer = setTimeout(() => {
+      setLose(true);
+      setWin(false);
+      setScore((point) => point - 3);
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  };
+  const setDraw = (newPoint) => {
+    point = newPoint;
+    setTimeout(() => {
+      setLose(true);
+      setWin(true);
+      setScore((point) => point + 1);
+    }, 2000);
+  };
+
+  const endGame = () => {
+    localStorage.removeItem("gameScore");
+  };
 
   const makePick = (pick) => {
     setShowGameBoard((prev) => !prev);
@@ -23,14 +85,14 @@ const HomePage = () => {
     setUserPick(pick);
     setTimeout(() => {
       setCompPick(cpu);
-    },2000)
+    }, 2000);
   };
 
   const cpuPick = () => {
     let optns = ["rock", "paper", "scissors", "spock", "lizard"];
     let cpuOption = optns[Math.floor(Math.random() * 5)];
     setTimeout(() => {
-      setCompPick(cpuOption)
+      setCompPick(cpuOption);
     }, 1000);
 
     return cpuOption;
@@ -146,54 +208,9 @@ const HomePage = () => {
     }
   };
 
-  const restart = () => {
-    setShowGameBoard(false);
-    setWin(false);
-    setLose(false);
-    setCompPick("")
-  };
-
-  const setWinner = (winner) => {
-    setTimeout(() => {
-      setResult(winner);
-    }, 2000);
-    setResult("");
-  };
-
-  const setPoints = (newPoint) => {
-    point = newPoint;
-    const timer = setTimeout(() => {
-      setScore((point) => point + 3);
-      setWin(true);
-      setLose(false);
-    }, 2000);
-    return () => {
-      clearTimeout(timer);
-    };
-  };
-  const setLoss = (newPoint) => {
-    point = newPoint;
-    const timer = setTimeout(() => {
-      setLose(true);
-      setWin(false);
-      setScore((point) => point - 3);
-    }, 2000);
-    return () => {
-      clearTimeout(timer);
-    };
-  };
-  const setDraw = (newPoint) => {
-    point = newPoint;
-    setTimeout(() => {
-      setLose(true);
-      setWin(true);
-      setScore((point) => point + 1);
-    }, 2000);
-  };
-
   return (
     <div className="container">
-      <div className="header">
+      <header className="header">
         <div className="logo" onClick={() => setShowGameBoard(false)}>
           <img src="images/logo-bonus.svg" alt="logo" className="title" />
         </div>
@@ -202,11 +219,13 @@ const HomePage = () => {
           <h1>{score}</h1>
           <div className="end-game">
             <Link href="/">
-              <div className="end">END GAME</div>
+              <div className="end" onClick={endGame}>
+                END GAME
+              </div>
             </Link>
           </div>
         </div>
-      </div>
+      </header>
       {!showGameBoard && (
         <div className="board">
           <div className="symbols">
@@ -286,11 +305,13 @@ const HomePage = () => {
           <div className={`cpu ${lose ? "cpu cpu-win" : ""}`}>
             <h3>THE HOUSE PICKED</h3>
             <div className={`img-wrapper choice ${compPick}`}>
-              {compPick && <img
-                src={`/images/icon-${compPick}.svg`}
-                alt="game-img"
-                className="user-img"
-              />}
+              {compPick && (
+                <img
+                  src={`/images/icon-${compPick}.svg`}
+                  alt="game-img"
+                  className="user-img"
+                />
+              )}
             </div>
           </div>
         </div>
@@ -309,11 +330,13 @@ const HomePage = () => {
           </div>
           <div className={`cpu ${lose ? "cpu cpu-win" : ""}`}>
             <div className={`img-wrapper choice ${compPick}`}>
-              {compPick && <img
-                src={`/images/icon-${compPick}.svg`}
-                alt="game-img"
-                className="user-img"
-              />}
+              {compPick && (
+                <img
+                  src={`/images/icon-${compPick}.svg`}
+                  alt="game-img"
+                  className="user-img"
+                />
+              )}
             </div>
             <h3>THE HOUSE PICKED</h3>
           </div>

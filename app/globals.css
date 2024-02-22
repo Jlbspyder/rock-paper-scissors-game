@@ -30,7 +30,6 @@ body {
 }
 a {
   text-decoration: none;
-  font-family: "Barlow Semi Condensed", sans-serif;
   letter-spacing: 1.5px;
   color: hsl(237, 49%, 15%);
 }
@@ -420,7 +419,6 @@ a {
 }
 .reset {
   color: hsl(237, 49%, 15%);
-  font-family: "Barlow Semi Condensed", sans-serif;
   padding: 0.5em 1em;
   letter-spacing: 1px;
   margin-top: 30px;
@@ -1021,6 +1019,9 @@ a {
     height: 130px;
     margin-top: 30px;
   }
+  .img-wrapper.choice {
+    margin: 0 80px 50px 20px;
+  }
   .board {
     margin-top: 0;
     height: 500px;
@@ -1076,6 +1077,9 @@ a {
   }
   .summary h1 {
     font-size: 1.7rem;
+  }
+  .reset {
+    z-index: 0;
   }
   .footer {
     top: 140%;
@@ -1526,6 +1530,7 @@ a {
   }
   .user {
     justify-content: start;
+    align-items: center;
     width: 30%;
   }
   .play {
