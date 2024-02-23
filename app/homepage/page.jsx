@@ -1,32 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MdOutlineClose } from "react-icons/md";
-
-// const getLocalStorage = () => {
-//   let gamePoint = localStorage.getItem("gameScore");
-//   if (gamePoint) {
-//     return (gamePoint = JSON.parse(gamePoint));
-//   } else {
-//     return 0;
-//   }
-// };
+import { useLocalStorage } from "usehooks-ts";
 
 const HomePage = () => {
   const [showGameBoard, setShowGameBoard] = useState(false);
-  const [showRules, setShowRules] = useState(false);
   const [result, setResult] = useState("");
   const [win, setWin] = useState(false);
   const [lose, setLose] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useLocalStorage("gameScore", 0);
   const [userPick, setUserPick] = useState("");
   const [compPick, setCompPick] = useState("");
+  const [isClient, setIsClient] = useState(false);
 
   let point = 0;
 
-  // useEffect(() => {
-  //   localStorage.setItem("gameScore", JSON.stringify(score));
-  // }, [score]);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const restart = () => {
     setShowGameBoard(false);
@@ -36,10 +27,13 @@ const HomePage = () => {
   };
 
   const setWinner = (winner) => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setResult(winner);
     }, 2000);
     setResult("");
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
   const setPoints = (newPoint) => {
@@ -66,11 +60,14 @@ const HomePage = () => {
   };
   const setDraw = (newPoint) => {
     point = newPoint;
-    setTimeout(() => {
+   const timer = setTimeout(() => {
       setLose(true);
       setWin(true);
       setScore((point) => point + 1);
     }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
   const endGame = () => {
@@ -83,9 +80,12 @@ const HomePage = () => {
     let cpu = cpuPick();
     setGamePlay(pick, cpu);
     setUserPick(pick);
-    setTimeout(() => {
+   const timer = setTimeout(() => {
       setCompPick(cpu);
     }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
   const cpuPick = () => {
@@ -216,7 +216,9 @@ const HomePage = () => {
         </div>
         <div className="result">
           <p>SCORE</p>
-          <h1>{score}</h1>
+          <div className="score">
+            {isClient ? <h1>{score}</h1> : <h1>- -</h1>}
+          </div>
           <div className="end-game">
             <Link href="/">
               <div className="end" onClick={endGame}>
@@ -354,37 +356,6 @@ const HomePage = () => {
       )}
       <div className="reset" onClick={reset}>
         RESET
-      </div>
-      {!showRules && (
-        <div className="footer">
-          <div className="rules" onClick={() => setShowRules(true)}>
-            RULES
-          </div>
-        </div>
-      )}
-      <div className={showRules ? "mobile-guideline open" : "mobile-guideline"}>
-        <h2>RULES</h2>
-        <div className="guideline-img">
-          <img src="/images/image-rules-bonus.svg" alt="" />
-        </div>
-        <MdOutlineClose
-          className="mobile-close"
-          onClick={() => setShowRules(false)}
-        />
-      </div>
-      <div className={showRules ? "rules-bg" : "rules-bg quit"}>
-        <div className={showRules ? "guideline open" : "guideline"}>
-          <div className="guideline-flex">
-            <h2>RULES</h2>
-            <MdOutlineClose
-              className="close"
-              onClick={() => setShowRules(false)}
-            />
-          </div>
-          <div className="guideline-img">
-            <img src="/images/image-rules-bonus.svg" alt="" className="beats" />
-          </div>
-        </div>
       </div>
     </div>
   );

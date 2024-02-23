@@ -7,7 +7,7 @@ This is a solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](h
 Users should be able to:
 
 - View the optimal layout for the game depending on their device's screen size
-- Play Rock, Paper, Scissors, Lizard, Spock against the computer
+- Play, Rock, Paper, Scissors, Lizard, Spock against the computer
 - Maintain the state of the score after refreshing the browser
 
 ### Links
@@ -20,6 +20,7 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - Mobile-first workflow
+- [useHooks-ts](https://www.npmjs.com/package/usehooks-ts) - React Hooks library
 - [Next.js](https://nextjs.org/) - React framework
 
 ## Author
