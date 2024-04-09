@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +15,6 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/images/favicon-32x32.png" />
       </head>
       <body className={inter.className}>{children}
-        <Footer />
       </body>
     </html>
   );
